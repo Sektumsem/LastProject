@@ -31,7 +31,7 @@
 
 
 @ViewBag.Success
-@using (Html.BeginForm("EditBook", "Home", FormMethod.Post))
+@using (Html.BeginForm("EditEat", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -40,43 +40,19 @@
         <legend>Books</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.Nimetus)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
+            @Html.EditorFor(model => model.Nimetus)
+            @Html.ValidationMessageFor(model => model.Nimetus)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Author)
+            @Html.LabelFor(model => model.Hind)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Author)
-            @Html.ValidationMessageFor(model => model.Author)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Image)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Image)
-            @Html.ValidationMessageFor(model => model.Image)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.File)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.File)
-            @Html.ValidationMessageFor(model => model.File)
+            @Html.EditorFor(model => model.Hind)
+            @Html.ValidationMessageFor(model => model.Hind)
         </div>
 
         <p>

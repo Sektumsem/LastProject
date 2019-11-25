@@ -15,18 +15,21 @@
                         <li>
                             Добро пожаловать, @HttpContext.Current.User.Identity.Name!
                             @Html.ActionLink("Выйти", "Logout", "Account")
+                        </li>
+                        <li>@Html.ActionLink("Добавить блюдо", "AddEat", "Home")</li>
+                        <li>@Html.ActionLink("Админ", "Admin", "Home")</li>
 
-                        </li>}
+                    }
                     <li>@Html.ActionLink("Tallinna restoran", "Index", "Home")</li>
                     <li>@Html.ActionLink("Меню", "Index", "Home")</li>
                     <li>@Html.ActionLink("О нас", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Админ", "Admin", "Home")</li>
                     @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == false)
                     {
                         <li>@Html.ActionLink("Логин", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>}
-                    </ul>
+                        <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
+                    }
+                </ul>
             </div>
     <div class="container body-content">
         @RenderBody()

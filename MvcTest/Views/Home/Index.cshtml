@@ -34,16 +34,19 @@
                 <th class="column100 column2" data-column="column2">Цена</th>
                 @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
                 {
-                    <th class="column100 column4" data-column="column4"></th>}
+                    <th class="column100 column3" data-column="column3"></th>
+}
             </tr>
-            @foreach (var b in ViewBag.Books)
+            @foreach (var b in ViewBag.Eats)
             {
-            <tr class="row100">
-                <td class="column100 column1" data-column="column1"><p>@b.Nimetus</p></td>
-                <td class="column100 column2" data-column="column2"><p>@b.Hind</p></td>
-                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
-                {
-                    <td class="column100 column4" data-column="column4"><p><a href="/Home/Buy/@b.Id">Добавить в заказ</a></p></td>}            </tr>
+                <tr class="row100">
+                    <td class="column100 column1" data-column="column1"><p>@b.Nimetus</p></td>
+                    <td class="column100 column2" data-column="column2"><p>@b.Hind</p></td>
+                    @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
+                    {
+                        <td class="column100 column3" data-column="column3"><p><a href="/Home/Buy/@b.Id">Добавить в заказ</a></p></td>
+                    }
+                </tr>
             }
         </table>
     </div>

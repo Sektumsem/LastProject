@@ -13,16 +13,15 @@ namespace MvcTest.Controllers
 {
     public class HomeController : Controller
     {
-        BookContext db = new BookContext();
+        EatContext db = new EatContext();
         UserContext udb = new UserContext();
-        static string camefrom;
         
         public ActionResult Index()
         {
             
             // получаем из бд все объекты Book
-            IEnumerable<Eats> books = db.Eats;
-            ViewBag.Books = books;
+            IEnumerable<Eats> Eats = db.Eats;
+            ViewBag.Eats = Eats;
             return View();
 
         }
@@ -34,40 +33,10 @@ namespace MvcTest.Controllers
             return View();
         }
         [Authorize(Roles = "admin, merchant")]
-        [HttpPost]
-        public ActionResult UploadFiles(HttpPostedFileBase[] files)
-        {
-            //Ensure model state is valid  
-            if (ModelState.IsValid)
-            {   //iterating through multiple file collection   
-                foreach (HttpPostedFileBase file in files)
-                {
-                    //Checking file is available to save.  
-                    if (file != null)
-                    {
-                        var InputFileName = Path.GetFileName(file.FileName);
-                        if (InputFileName.Contains(".jpg") || InputFileName.Contains(".png") || InputFileName.Contains(".gif"))
-                        {
-                            var ServerSavePath2 = Path.Combine(Server.MapPath("/Images/") + InputFileName);
-                            file.SaveAs(ServerSavePath2);
-                            //assigning file uploaded status to ViewBag for showing message to user.  
-                            ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
-                            return View();
-                        }
-                        var ServerSavePath = Path.Combine(Server.MapPath("/Files/") + InputFileName);
-                        //Save file to server folder  
-                        file.SaveAs(ServerSavePath);
-                        //assigning file uploaded status to ViewBag for showing message to user.  
-                        ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
-                    }
-
-                }
-            }
-            return View();
-        }
+        
         [Authorize(Roles = "admin, merchant")]
         [HttpPost]
-        public ActionResult AddBook(Eats objbook)
+        public ActionResult AddEat(Eats objbook)
         {
 
             if (ModelState.IsValid)
@@ -81,14 +50,14 @@ namespace MvcTest.Controllers
                 }
                 ModelState.Clear();
             }
-            return View();
+            return RedirectToAction("Index");
         }
-        [Authorize(Roles="admin, merchant")]
+        [Authorize(Roles="admin, tenindaja")]
         [HttpGet]
-        public ActionResult AddBook()
+        public ActionResult AddEat()
         {
-            IEnumerable<Eats> books = db.Eats;
-            ViewBag.Books = books;
+            IEnumerable<Eats> eats = db.Eats;
+            ViewBag.Eats = eats;
             return View();
         }
 
@@ -96,7 +65,7 @@ namespace MvcTest.Controllers
         [Authorize(Roles="admin")]
         public ActionResult Admin()
         {
-            ViewBag.Books = this.db.Eats.ToList();
+            ViewBag.Eats = this.db.Eats.ToList();
             ViewBag.Users = this.udb.Users.ToList();
             ViewBag.Roles = this.udb.Roles.ToList();
             return View();
@@ -150,52 +119,14 @@ namespace MvcTest.Controllers
             }
             return View("About");
         }
-        public FileResult GetFile(int id)
-        {
-            ViewBag.BookId = id;
 
-            // Путь к файлу
-            string file_path = Server.MapPath("~/Files/book"+id+".pdf");
-            // Тип файла - content-type
-            string file_type = "application/pdf";
-            // Имя файла - необязательно
-            string file_name = "book"+id+".pdf";
-            return File(file_path, file_type, file_name);
-        }
-        public FileResult GetBytes()
-        {
-            string path = Server.MapPath("~/Files/PDFIcon.pdf");
-            byte[] mas = System.IO.File.ReadAllBytes(path);
-            string file_type = "application/pdf";
-            string file_name = "PDFIcon.pdf";
-            return File(mas, file_type, file_name);
-        }
-
-        public FileResult GetStream()
-        {
-            string path = Server.MapPath("~/Files/PDFIcon.pdf");
-            // Объект Stream
-            FileStream fs = new FileStream(path, FileMode.Open);
-            string file_type = "application/pdf";
-            string file_name = "PDFIcon.pdf";
-            return File(fs, file_type, file_name);
-        }
-
-        public ActionResult GetImage(int id, string name)
-        {
-            ViewBag.BookId = id;
-            ViewBag.Name = name;
-            string stringid = Convert.ToString(id);
-            string path = "../../Images/book"+stringid+".jpg";
-            return new ImageResult(path, name);
-        }
 
         public ActionResult Contact()
         {
             return View();
         }
-        [Authorize(Roles = "admin, merchant")]
-        public ActionResult EditBook(int id)
+        [Authorize(Roles = "admin")]
+        public ActionResult EditEat(int id)
         {
             var Bookdata = db.Eats.Where(b => b.Id == id).FirstOrDefault();
             if (Bookdata != null)
@@ -206,9 +137,9 @@ namespace MvcTest.Controllers
             }
             return View();
         }
-        [Authorize(Roles = "admin, merchant")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult EditBook(Eats objbook)
+        public ActionResult EditEat(Eats objbook)
         {
 
             int StudentId = (int)TempData["StudentId"];
@@ -284,42 +215,39 @@ namespace MvcTest.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Buy(int id)
+        public ActionResult Eats(int id)
         {
             ViewBag.User = User.Identity.Name;
-            ViewBag.BookId = id;
+            ViewBag.Id = id;
             return View();
             
         }
         
         [Authorize]
         [HttpPost]
-        public ActionResult Buy(Purchase purchase)
+        public ActionResult Eats(Kokkale kokkale)
         {
             
-            // добавляем информацию о покупке в базу данных
-            
-            // сохраняем в бд все изменения
             if (ModelState.IsValid)
             {
-                purchase.Date = DateTime.Now;
-                db.Purchases.Add(purchase);
+                kokkale.Date = DateTime.Now;
+                db.Kokkale.Add(kokkale);
                 db.SaveChanges();
-                return RedirectToAction("Thanks", purchase);
+                return RedirectToAction("Thanks", kokkale);
             }
             else
             {
-                ViewBag.BookId = purchase.BookId;
+                ViewBag.Id = kokkale.EatId;
                 return View();
             }
         }
 
         [Authorize]
-        public ActionResult Thanks(Purchase purchase)
+        public ActionResult Thanks(Kokkale kokkale)
         {
             
             foreach (Eats b in db.Eats)
-                if (b.Id == purchase.BookId) ViewBag.BookName = b.Nimetus;
+                if (b.Id == kokkale.EatId) ViewBag.BookName = b.Nimetus;
 
             //кодирование
             string passwordOriginal = "Esthete2711";
@@ -333,11 +261,11 @@ namespace MvcTest.Controllers
         }
 
         [HttpPost]
-        public ViewResult RsvpForm(Purchase purchase)
+        public ViewResult RsvpForm(Kokkale kokkale)
         {
             if(ModelState.IsValid)
             {
-                return View("Thanks", purchase);
+                return View("Thanks", kokkale);
             }
             else
             {

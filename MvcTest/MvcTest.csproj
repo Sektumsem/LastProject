@@ -138,17 +138,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Eats.cs" />
-    <Compile Include="Models\BookContext.cs" />
+    <Compile Include="Models\EatContext.cs" />
     <Compile Include="Models\BookDbInitializer.cs" />
     <Compile Include="Models\FileModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Models.cs" />
-    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\Kokkale.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,9 +156,9 @@
     <Compile Include="Util\ImageResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Bookstore.mdf" />
-    <Content Include="App_Data\Bookstore_log.ldf">
-      <DependentUpon>Bookstore.mdf</DependentUpon>
+    <Content Include="App_Data\restoran.mdf" />
+    <Content Include="App_Data\restoran_log.ldf">
+      <DependentUpon>restoran.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\FormsAuth.mdf" />
     <Content Include="App_Data\FormsAuth_log.ldf">
@@ -178,9 +177,6 @@
     <Content Include="fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="fonts\montserrat\OFL.txt" />
     <Content Include="Images\background.jpg" />
-    <Content Include="Images\book1.jpg" />
-    <Content Include="Images\book2.jpg" />
-    <Content Include="Images\book3.jpg" />
     <Content Include="Images\icons\favicon.ico" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -318,6 +314,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\EditUser.cshtml" />
     <Content Include="Views\Home\EditRole.cshtml" />
+    <Content Include="Views\Home\kokkale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Book\" />

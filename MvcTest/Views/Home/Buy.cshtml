@@ -21,9 +21,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/css/main.css">
     <!--===============================================================================================-->
-    <title>Книжный магазин</title>
-    <h1>@ViewBag.Greeting</h1>
-    <h3>@ViewBag.Head</h3>
+    <title>Tallina restoran</title>
     <h3>Меню</h3>
 </head>
 <body>
@@ -32,22 +30,18 @@
             <tr class="row100 head">
                 <th class="column100 column1" data-column="column1"><p>Название</p></th>
                 <th class="column100 column2" data-column="column2">Цена</th>
-                @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
-                {
-                    <th class="column100 column4" data-column="column4"></th>
-}
+                <th class="column100 column3" data-column="column3"></th>
+                
             </tr>
-            @foreach (var b in ViewBag.Eats)
-            {
-                <tr class="row100">
-                    <td class="column100 column1" data-column="column1"><p>@b.Nimetus</p></td>
-                    <td class="column100 column2" data-column="column2"><p>@b.Hind</p></td>
-                    <!----> @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated == true)
-                    {
-                        <td class="column100 column4" data-column="column4"><p><a href="/Home/Buy/@b.Id">Удалить</a></p></td>
-}
-                </tr>
-            }
+                @foreach (var a in ViewBag.Eats)
+                {
+                    <tr class="row100">
+                        <td class="column100 column1" data-column="column1"><p>@a.Nimetus</p></td>
+                        <td class="column100 column2" data-column="column2"><p>@a.Hind</p></td>
+                        <td class="column100 column3" data-column="column3"><p><a href="/Home/Buy/@a.Id">Удалить</a></p></td>
+                        
+                    </tr>
+                }
         </table>
     </div>
     <!--===============================================================================================-->

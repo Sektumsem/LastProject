@@ -6,9 +6,9 @@ using System.Data.Entity;
 
 namespace MvcTest.Models
 {
-    public class BookDbInitializer : DropCreateDatabaseIfModelChanges<BookContext>
+    public class BookDbInitializer : DropCreateDatabaseIfModelChanges<EatContext>
     {
-        protected override void Seed(BookContext db)
+        protected override void Seed(EatContext db)
         {
             db.Eats.Add(new Eats { Nimetus = "Картошка", Hind = "5€",});
             base.Seed(db);

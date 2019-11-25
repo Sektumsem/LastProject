@@ -124,24 +124,19 @@
                                     <th>Книги</th>
                                     <th class="column100 column1" data-column="column1">Id</th>
                                     <th class="column100 column2" data-column="column2">Название</th>
-                                    <th class="column100 column3" data-column="column3">Автор</th>
-                                    <th class="column100 column4" data-column="column4">Цена</th>
-                                    <th class="column100 column5" data-column="column5">Название Файла</th>
-                                    <th class="column100 column6" data-column="column6">Название Обложки</th>
+                                    <th class="column100 column3" data-column="column3">Цена</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var b in ViewBag.Books)
+                                @foreach (var b in ViewBag.Eats)
                                 {
                                     <tr class="row100">
                                         <td><input type="checkbox" id="book" name="BookID" value="@b.Id" class="custom-checkbox chkCheckBoxId" onclick="bookcheck()"/></td>
                                         <td class="column100 column1" data-column="column1">@b.Id</td>
-                                        <td class="column100 column2" data-column="column2">@b.Name</td>
-                                        <td class="column100 column3" data-column="column3">@b.Author</td>
-                                        <td class="column100 column4" data-column="column4">@b.Price</td>
-                                        <td class="column100 column5" data-column="column5">@b.Image</td>
-                                        <td class="column100 column6" data-column="column6">@b.File</td>
-                                        <td>@Html.ActionLink("Изменить", "EditBook", new { id = @b.Id })</td>
+                                        <td class="column100 column2" data-column="column2">@b.Nimetus</td>
+                                        <td class="column100 column3" data-column="column3">@b.Hind</td>
+                                        <td>@Html.ActionLink("Изменить", "EditEat", new { id = @b.Id })</td>
                                     </tr>
                                 }
                             </tbody>

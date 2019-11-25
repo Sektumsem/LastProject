@@ -20,8 +20,8 @@ namespace MvcTest.Models
         protected override void Seed(UserContext db)
         {
             db.Roles.Add( new Role { Id = 1, Name = "admin"});
-            db.Roles.Add( new Role { Id = 2, Name = "kook"});
-            db.Roles.Add(new Role { Id = 3, Name = "teenindaja" });
+            db.Roles.Add( new Role { Id = 2, Name = "kokk"});
+            db.Roles.Add(new Role { Id = 3, Name = "tenindaja" });
             db.Users.Add(new User
             {
                 Id = 1,
@@ -29,6 +29,24 @@ namespace MvcTest.Models
                 Password = "admin",
                 Age = 20,
                 RoleId = 1
+
+            });
+            db.Users.Add(new User
+            {
+                Id = 2,
+                Email = "kokk",
+                Password = "kokk",
+                Age = 20,
+                RoleId = 2
+
+            });
+            db.Users.Add(new User
+            {
+                Id = 3,
+                Email = "tenindaja",
+                Password = "tenindaja",
+                Age = 20,
+                RoleId = 3
 
             });
 
