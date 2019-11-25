@@ -22,3 +22,5 @@ PHP
 Функции:
 Поиск по названию блюда
 <br>
+<img src="https://github.com/Sektumsem/LastProject/blob/master/H%C3%B5iva2.PNG">
+<img src="https://github.com/Sektumsem/LastProject/blob/master/H%C3%B5iva.PNG">
