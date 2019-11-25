@@ -52,7 +52,6 @@ PHP
               <jook id="10" hind="1.20€">Multi mahl</jook>
           </joogid>
       </menuu>
-
       <tellimus id="1">
           <number>23234</number>
           <laud>3</laud>
