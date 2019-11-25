@@ -23,6 +23,7 @@ PHP
 Поиск по названию блюда
 <br>
   <h2>XML файл</h2>
+<code>
 <?xml version="1.0" encoding="utf-8" ?>
 <restaran>
     <menuu>
@@ -69,3 +70,4 @@ PHP
         <tellimusestaatus>Ei ole valmis</tellimusestaatus>
     </tellimus>
 </restaran>
+</code>
