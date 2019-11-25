@@ -22,9 +22,9 @@ PHP
 Функции:
 Поиск по названию блюда
 <br>
-  <h2>XML файл</h2>
-<code>
-  <?xml version="1.0" encoding="utf-8" ?>
+<h2>XML файл</h2>
+  ```
+    <?xml version="1.0" encoding="utf-8" ?>
   <restaran>
       <menuu>
           <toid>
@@ -68,5 +68,5 @@ PHP
           <tenindaja>Daniil</tenindaja>
           <tellimusestaatus>Ei ole valmis</tellimusestaatus>
       </tellimus>
-  </restaran>
-</code>
+ </restaran>
+```
